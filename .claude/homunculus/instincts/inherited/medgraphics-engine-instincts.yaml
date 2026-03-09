@@ -1,0 +1,277 @@
+# Instincts generated from https://github.com/piyushd1/medgraphics-engine
+# Generated: 2026-03-09T10:37:39.270Z
+# Version: 2.0
+
+---
+id: medgraphics-engine-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Commit Length
+
+## Action
+
+Keep commit messages concise (under 50 characters)
+
+## Evidence
+
+- Average commit message length: 34 chars
+- Based on 3 commits
+
+---
+id: medgraphics-engine-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: medgraphics-engine-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: medgraphics-engine-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: medgraphics-engine-snake-case-files
+trigger: "When creating a new Python file"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Snake Case Files
+
+## Action
+
+Use snake_case naming convention for the filename
+
+## Evidence
+
+- Pattern observed in folder structure analysis
+- Standard Python convention detected
+
+---
+id: medgraphics-engine-camelcase-functions
+trigger: "When defining a function in Python"
+confidence: 0.6
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Camelcase Functions
+
+## Action
+
+Use camelCase naming convention for function names
+
+## Evidence
+
+- Detected in codeStyle.namingConventions analysis
+
+---
+id: medgraphics-engine-pascalcase-classes
+trigger: "When defining a class in Python"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Pascalcase Classes
+
+## Action
+
+Use PascalCase naming convention for class names
+
+## Evidence
+
+- Detected in codeStyle.namingConventions analysis
+
+---
+id: medgraphics-engine-screaming-snake-constants
+trigger: "When defining a constant in Python"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Screaming Snake Constants
+
+## Action
+
+Use SCREAMING_SNAKE_CASE naming convention for constants
+
+## Evidence
+
+- Detected in codeStyle.namingConventions analysis
+
+---
+id: medgraphics-engine-module-level-imports
+trigger: "When importing standard library modules like os"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Module Level Imports
+
+## Action
+
+Move imports to module level instead of late imports
+
+## Evidence
+
+- Commit: '🧹 Move late imports of `os` to module level'
+
+---
+id: medgraphics-engine-separate-test-location
+trigger: "When creating tests for the project"
+confidence: 0.7
+domain: testing
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Separate Test Location
+
+## Action
+
+Place tests in a separate directory structure from source code
+
+## Evidence
+
+- Architecture analysis shows testLocation: 'separate'
+
+---
+id: medgraphics-engine-freeform-commits
+trigger: "When making a commit"
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Freeform Commits
+
+## Action
+
+Write descriptive commit messages without strict prefix requirements
+
+## Evidence
+
+- Commits analysis shows type: 'freeform' with no required prefixes
+- Examples: 'Add CI workflow for linting and testing (#1)', 'Initial commit'
+
+---
+id: medgraphics-engine-emoji-cleanup-commits
+trigger: "When making cleanup or refactoring commits"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Emoji Cleanup Commits
+
+## Action
+
+Use 🧹 emoji to indicate cleanup/housekeeping changes
+
+## Evidence
+
+- Commit example: '🧹 Move late imports of `os` to module level'
+
+---
+id: medgraphics-engine-ci-workflow
+trigger: "When setting up continuous integration"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Ci Workflow
+
+## Action
+
+Create GitHub Actions workflow for linting and testing
+
+## Evidence
+
+- Config file: '.github/workflows/ci.yml'
+- Commit: 'Add CI workflow for linting and testing (#1)'
+
+---
+id: medgraphics-engine-hybrid-modules
+trigger: "When organizing code modules"
+confidence: 0.5
+domain: architecture
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Hybrid Modules
+
+## Action
+
+Use hybrid module organization approach
+
+## Evidence
+
+- Architecture analysis shows moduleOrganization: 'hybrid'
+

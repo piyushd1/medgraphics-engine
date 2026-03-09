@@ -1,0 +1,11 @@
+{
+  "name": "Default",
+  "theme": {
+    "primary_color": "#2B6CB0",
+    "secondary_color": "#EBF4FF",
+    "accent_color": "#38A169",
+    "heading_font": "Poppins",
+    "body_font": "Inter"
+  },
+  "logo": null
+}

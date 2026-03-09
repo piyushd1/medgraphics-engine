@@ -1,0 +1,360 @@
+# Instincts generated from https://github.com/piyushd1/medgraphics-engine
+# Generated: 2026-03-09T08:31:12.552Z
+# Version: 2.0
+
+---
+id: medgraphics-engine-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Commit Length
+
+## Action
+
+Write moderate-length commit messages (~50 characters)
+
+## Evidence
+
+- Average commit message length: 67 chars
+- Based on 9 commits
+
+---
+id: medgraphics-engine-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: medgraphics-engine-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: medgraphics-engine-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: medgraphics-engine-workflow-feature-development
+trigger: "when implementing a new feature"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Workflow Feature Development
+
+## Action
+
+Follow the feature-development workflow:
+1. Add feature implementation
+2. Add tests for feature
+3. Update documentation
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~23x per month
+- Files: **/*.test.*, **/api/**
+
+---
+id: medgraphics-engine-workflow-engine-component-development
+trigger: "when doing engine component development"
+confidence: 0.7
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Workflow Engine Component Development
+
+## Action
+
+Follow the engine-component-development workflow:
+1. Create component file in engine/ directory
+2. Create corresponding test file with test_ prefix
+3. Implement component functionality
+4. Write unit tests
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~4x per month
+- Files: engine/{component}.py, test_{component}.py
+
+---
+id: medgraphics-engine-workflow-template-system-development
+trigger: "when doing template system development"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Workflow Template System Development
+
+## Action
+
+Follow the template-system-development workflow:
+1. Create engine component for template processing
+2. Add HTML template files in templates/
+3. Create test file for validation
+4. Update template engine if needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: engine/template*.py, templates/*.html, test_template*.py
+
+---
+id: medgraphics-engine-snake-case-files
+trigger: "When creating new Python files"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Snake Case Files
+
+## Action
+
+Use snake_case naming convention for file names
+
+## Evidence
+
+- Pattern seen in engine files
+- Consistent across template files and test files
+
+---
+id: medgraphics-engine-pascal-case-classes
+trigger: "When defining new classes"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Pascal Case Classes
+
+## Action
+
+Use PascalCase naming convention for class names
+
+## Evidence
+
+- MedGraphicsPipeline class example
+- Consistent pattern in codeStyle analysis
+
+---
+id: medgraphics-engine-camel-case-functions
+trigger: "When defining new functions or methods"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Camel Case Functions
+
+## Action
+
+Use camelCase naming convention for function names
+
+## Evidence
+
+- Detected as primary function naming pattern
+- Consistent across codebase
+
+---
+id: medgraphics-engine-test-prefix
+trigger: "When creating test files"
+confidence: 0.9
+domain: testing
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Test Prefix
+
+## Action
+
+Name test files with 'test_' prefix matching the component being tested
+
+## Evidence
+
+- Pattern in engine-component-development workflow
+- Consistent test file naming across workflows
+
+---
+id: medgraphics-engine-feat-commits
+trigger: "When implementing new features"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Feat Commits
+
+## Action
+
+Use 'feat' prefix in commit messages with ticket references
+
+## Evidence
+
+- feat(PIY-19): add MedGraphicsPipeline
+- feat(PIY-18): add playwright HTML to PNG renderer
+- feat(PIY-17): add prompt templates
+
+---
+id: medgraphics-engine-ticket-format
+trigger: "When writing commit messages with tickets"
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Ticket Format
+
+## Action
+
+Format as 'feat(TICKET-ID): description' with descriptive action verbs
+
+## Evidence
+
+- PIY-19, PIY-18, PIY-17 ticket format
+- Average commit length of 67 characters suggests detailed descriptions
+
+---
+id: medgraphics-engine-component-workflow
+trigger: "When adding new engine components"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Component Workflow
+
+## Action
+
+Create component file in engine/ directory and corresponding test file with test_ prefix
+
+## Evidence
+
+- engine-component-development workflow frequency ~4x/month
+- Consistent pattern in filesInvolved
+
+---
+id: medgraphics-engine-template-workflow
+trigger: "When adding templating capabilities"
+confidence: 0.8
+domain: workflow
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Template Workflow
+
+## Action
+
+Create engine component for template processing and add HTML templates in templates/ directory
+
+## Evidence
+
+- template-system-development workflow
+- templates/ folder in commonFolders
+- HTML template files pattern
+
+---
+id: medgraphics-engine-engine-directory
+trigger: "When creating core functionality components"
+confidence: 0.9
+domain: architecture
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Engine Directory
+
+## Action
+
+Place component files in the engine/ directory
+
+## Evidence
+
+- engine folder in commonFolders
+- engine/{component}.py pattern in workflows
+
+---
+id: medgraphics-engine-separate-tests
+trigger: "When organizing test files"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Separate Tests
+
+## Action
+
+Keep test files separate from source code, not in nested test directories
+
+## Evidence
+
+- testLocation: separate
+- test_{component}.py pattern at root level
+

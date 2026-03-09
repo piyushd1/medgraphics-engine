@@ -18,7 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install flake8 pytest pyyaml jinja2 python-dotenv pillow
+          pip install flake8 pytest pytest-timeout pyyaml jinja2 python-dotenv pillow
           pip install playwright litellm streamlit
           playwright install chromium --with-deps
 

@@ -130,4 +130,8 @@ class LLMRouter:
 
     def get_cost_summary(self) -> dict:
         """Return total costs per model for the session"""
-        return self.cost_summary
+        total = sum(self.cost_summary.values())
+        return {
+            "total_cost": total,
+            "model_costs": self.cost_summary
+        }

@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+import re
 from dotenv import load_dotenv
 
 # Ensure the root directory is on the Python path since test is in tests/

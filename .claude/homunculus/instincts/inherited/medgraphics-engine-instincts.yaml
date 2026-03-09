@@ -1,0 +1,282 @@
+# Instincts generated from https://github.com/piyushd1/medgraphics-engine
+# Generated: 2026-03-09T10:42:48.414Z
+# Version: 2.0
+
+---
+id: medgraphics-engine-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Commit Length
+
+## Action
+
+Keep commit messages concise (under 50 characters)
+
+## Evidence
+
+- Average commit message length: 44 chars
+- Based on 3 commits
+
+---
+id: medgraphics-engine-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: medgraphics-engine-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: medgraphics-engine-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: medgraphics-engine-snake-case-files
+trigger: "When creating new Python files"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Snake Case Files
+
+## Action
+
+Use snake_case naming convention for file names
+
+## Evidence
+
+- Pattern detected in folder structure analysis
+- Python project with snake_case file convention
+
+---
+id: medgraphics-engine-pascal-case-classes
+trigger: "When defining Python classes"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Pascal Case Classes
+
+## Action
+
+Use PascalCase naming convention for class names
+
+## Evidence
+
+- LLMRouter class name follows PascalCase
+- Detected PascalCase pattern in codebase
+
+---
+id: medgraphics-engine-camel-case-functions
+trigger: "When defining Python functions or methods"
+confidence: 0.6
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Camel Case Functions
+
+## Action
+
+Use camelCase naming convention for function names
+
+## Evidence
+
+- camelCase function naming detected in analysis
+- Mixed with snake_case in some areas
+
+---
+id: medgraphics-engine-screaming-snake-constants
+trigger: "When defining constants in Python"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Screaming Snake Constants
+
+## Action
+
+Use SCREAMING_SNAKE_CASE naming convention for constants
+
+## Evidence
+
+- SCREAMING_SNAKE_CASE pattern detected for constants
+- Standard Python convention followed
+
+---
+id: medgraphics-engine-descriptive-commits
+trigger: "When making git commits"
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Descriptive Commits
+
+## Action
+
+Write descriptive commit messages with technical details and emoji prefixes
+
+## Evidence
+
+- ⚡ Optimize LLMRouter initialization using lru_cache for YAML model config
+- Average commit length of 44 characters indicates detailed messages
+
+---
+id: medgraphics-engine-emoji-commit-prefix
+trigger: "When committing performance improvements"
+confidence: 0.5
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Emoji Commit Prefix
+
+## Action
+
+Use ⚡ emoji prefix for optimization commits
+
+## Evidence
+
+- ⚡ Optimize LLMRouter initialization using lru_cache for YAML model config
+
+---
+id: medgraphics-engine-separate-tests
+trigger: "When creating test files"
+confidence: 0.7
+domain: testing
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Separate Tests
+
+## Action
+
+Place tests in separate test directory structure rather than alongside source files
+
+## Evidence
+
+- testLocation: separate detected in architecture analysis
+- CI workflow includes testing setup
+
+---
+id: medgraphics-engine-ci-linting
+trigger: "When setting up CI/CD pipeline"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Ci Linting
+
+## Action
+
+Include both linting and testing in CI workflow
+
+## Evidence
+
+- Add CI workflow for linting and testing (#1)
+- .github/workflows/ci.yml config file present
+
+---
+id: medgraphics-engine-hybrid-modules
+trigger: "When organizing code modules"
+confidence: 0.6
+domain: architecture
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Hybrid Modules
+
+## Action
+
+Use hybrid module organization with mixed functional and feature-based grouping
+
+## Evidence
+
+- moduleOrganization: hybrid detected
+- Mixed folder structure with engine, clients, templates, prompts
+
+---
+id: medgraphics-engine-yaml-config
+trigger: "When implementing configuration caching"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Yaml Config
+
+## Action
+
+Use lru_cache for YAML configuration loading optimization
+
+## Evidence
+
+- ⚡ Optimize LLMRouter initialization using lru_cache for YAML model config commit
+

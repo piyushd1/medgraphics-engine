@@ -1,13 +1,24 @@
 import json
 import os
+import sys
 import re
-from engine.pipeline import MedGraphicsPipeline
 from dotenv import load_dotenv
+
+# Ensure the root directory is on the Python path since test is in tests/
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from engine.pipeline import MedGraphicsPipeline
 
 load_dotenv()
 
+import pytest
+
 def test_pipeline():
     print("Testing MedGraphicsPipeline...")
+    
+    if not os.environ.get("GEMINI_API_KEY") and not os.environ.get("OPENAI_API_KEY"):
+        pytest.skip("Skipping end-to-end pipeline test: No AI API keys configured.")
+        return
     
     # Needs to be created from the current working directory
     # Loading the default client profile

@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Ensure the root directory is on the Python path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from prompts.topic_generation import TOPIC_GENERATION_PROMPT
 from prompts.content_brief import CONTENT_BRIEF_PROMPT, TEMPLATE_SCHEMAS
 from prompts.html_generation import HTML_GENERATION_PROMPT

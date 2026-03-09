@@ -3,15 +3,18 @@ import sys
 from dotenv import load_dotenv
 
 # Ensure the root directory is on the Python path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from engine.llm_router import LLMRouter
+
+import pytest
 
 def test_router():
     load_dotenv() # Force load .env since we're running isolated script
     
-    if not os.environ.get("GEMINI_API_KEY"):
-        print("WARNING: GEMINI_API_KEY environment variable not set. Free tier models may fail.")
+    if not os.environ.get("GEMINI_API_KEY") and not os.environ.get("OPENAI_API_KEY"):
+        pytest.skip("Skipping LLMRouter tests: No AI API keys configured.")
+        return
         
     print("Initializing LLMRouter...")
     router = LLMRouter("config/models.yaml")

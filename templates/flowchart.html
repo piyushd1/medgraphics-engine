@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 80px 40px;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    h1 {
+        font-family: var(--font-heading);
+        font-size: 3.5rem;
+        color: var(--primary);
+    }
+
+    .flow-container {
+        display: flex;
+        flex-grow: 1;
+        gap: 40px;
+    }
+
+    .path {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .path-header {
+        padding: 30px 20px;
+        text-align: center;
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 20px;
+    }
+
+    .path-positive {
+        background-color: var(--secondary);
+        border: 2px solid var(--primary);
+    }
+
+    .path-positive .path-header {
+        background-color: var(--primary);
+    }
+
+    .path-negative {
+        background-color: #F8FAFC;
+        border: 2px solid #94A3B8;
+    }
+
+    .path-negative .path-header {
+        background-color: #64748B;
+    }
+
+    .steps {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        flex-grow: 1;
+        justify-content: space-around;
+    }
+
+    .step {
+        background: white;
+        padding: 25px 20px;
+        text-align: center;
+        width: 90%;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.4rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        position: relative;
+    }
+
+    .step:not(:last-child)::after {
+        content: '↓';
+        position: absolute;
+        bottom: -45px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 2.5rem;
+        color: inherit;
+        opacity: 0.5;
+    }
+
+    .path-positive .step {
+        border: 2px solid var(--secondary);
+        color: var(--primary);
+    }
+
+    .path-positive .step::after {
+        color: var(--primary);
+    }
+
+    .path-negative .step {
+        border: 2px solid #E2E8F0;
+        color: #475569;
+    }
+
+    .path-negative .step::after {
+        color: #64748B;
+    }
+
+    @media (max-aspect-ratio: 1/1) {
+        .path-header {
+            font-size: 1.5rem;
+            padding: 20px 10px;
+        }
+
+        .step {
+            padding: 20px 15px;
+            font-size: 1.2rem;
+        }
+
+        .step:not(:last-child)::after {
+            bottom: -35px;
+            font-size: 2rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>{{ data.title }}</h1>
+    </header>
+    <div class="flow-container">
+        {% for path in data.paths %}
+        <div class="path path-{{ path.color }}">
+            <div class="path-header">{{ path.heading }}</div>
+            <div class="steps">
+                {% for step in path.steps %}
+                <div class="step">{{ step }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

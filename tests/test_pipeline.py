@@ -1,8 +1,12 @@
 import json
 import os
-import re
-from engine.pipeline import MedGraphicsPipeline
+import sys
 from dotenv import load_dotenv
+
+# Ensure the root directory is on the Python path since test is in tests/
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from engine.pipeline import MedGraphicsPipeline
 
 load_dotenv()
 

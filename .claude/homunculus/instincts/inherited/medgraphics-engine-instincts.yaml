@@ -1,0 +1,264 @@
+# Instincts generated from https://github.com/piyushd1/medgraphics-engine
+# Generated: 2026-03-09T10:40:44.668Z
+# Version: 2.0
+
+---
+id: medgraphics-engine-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Commit Length
+
+## Action
+
+Keep commit messages concise (under 50 characters)
+
+## Evidence
+
+- Average commit message length: 45 chars
+- Based on 3 commits
+
+---
+id: medgraphics-engine-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: medgraphics-engine-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: medgraphics-engine-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: medgraphics-engine-python-file-naming
+trigger: "When creating a new Python file"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Python File Naming
+
+## Action
+
+Name the file using snake_case convention
+
+## Evidence
+
+- Folder structure shows snake_case pattern in Python codebase
+- Language identified as Python with snake_case file naming
+
+---
+id: medgraphics-engine-class-naming
+trigger: "When defining a new class"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Class Naming
+
+## Action
+
+Name the class using PascalCase convention
+
+## Evidence
+
+- Code style analysis shows PascalCase for classes
+- Example: LLMRouter class follows PascalCase
+
+---
+id: medgraphics-engine-function-naming
+trigger: "When defining a new function"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Function Naming
+
+## Action
+
+Name the function using camelCase convention
+
+## Evidence
+
+- Code style analysis indicates camelCase for functions
+- Detected camelCase pattern in codebase
+
+---
+id: medgraphics-engine-constant-naming
+trigger: "When defining a constant"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Constant Naming
+
+## Action
+
+Name the constant using SCREAMING_SNAKE_CASE convention
+
+## Evidence
+
+- Code style analysis shows SCREAMING_SNAKE_CASE for constants
+- Python convention detected in codebase
+
+---
+id: medgraphics-engine-feat-commits
+trigger: "When adding a new feature"
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Feat Commits
+
+## Action
+
+Use 'feat' prefix in commit message with descriptive details
+
+## Evidence
+
+- feat(perf): pre-compute model configurations for faster lookups in LLMRouter
+- feat prefix consistently used in commit examples
+
+---
+id: medgraphics-engine-commit-length
+trigger: "When writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Commit Length
+
+## Action
+
+Keep commit message around 45 characters for consistency
+
+## Evidence
+
+- Average commit length is 45 characters
+- Commit examples show moderate length messages
+
+---
+id: medgraphics-engine-separate-tests
+trigger: "When creating tests"
+confidence: 0.7
+domain: testing
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Separate Tests
+
+## Action
+
+Place tests in separate directory from source code
+
+## Evidence
+
+- Architecture shows testLocation: 'separate'
+- Single-package structure with separate test organization
+
+---
+id: medgraphics-engine-ci-workflow
+trigger: "When setting up continuous integration"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Ci Workflow
+
+## Action
+
+Use GitHub Actions with linting and testing workflow
+
+## Evidence
+
+- Add CI workflow for linting and testing (#1)
+- .github/workflows/ci.yml present in config files
+
+---
+id: medgraphics-engine-hybrid-modules
+trigger: "When organizing code modules"
+confidence: 0.6
+domain: architecture
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Hybrid Modules
+
+## Action
+
+Use hybrid organization mixing functional and feature-based grouping
+
+## Evidence
+
+- moduleOrganization: 'hybrid'
+- Mix of folders like 'engine', 'clients', 'templates', 'prompts' showing hybrid approach
+

@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 80px 40px;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    h1 {
+        font-family: var(--font-heading);
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        color: var(--text);
+        opacity: 0.8;
+    }
+
+    .panels {
+        display: flex;
+        flex-grow: 1;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+
+    .panel {
+        flex: 1;
+        border-radius: 20px;
+        padding: 40px 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .panel-left {
+        background-color: var(--secondary);
+    }
+
+    .panel-right {
+        background-color: white;
+        border: 2px solid #E2E8F0;
+    }
+
+    .panel-heading {
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        color: var(--primary);
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .panel-subheading {
+        font-size: 1.2rem;
+        text-align: center;
+        color: var(--text);
+        opacity: 0.7;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 40px;
+    }
+
+    .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        flex-grow: 1;
+    }
+
+    .step {
+        display: flex;
+        align-items: center;
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .panel-left .step {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    .step-icon {
+        font-size: 2rem;
+        width: 50px;
+        text-align: center;
+        margin-right: 15px;
+    }
+
+    .step-label {
+        font-size: 1.3rem;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+
+    .bottom-note {
+        background-color: var(--accent);
+        color: white;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+        display: flex;
+        gap: 30px;
+    }
+
+    .footer-text {
+        flex: 1;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text);
+        opacity: 0.7;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>{{ data.title }}</h1>
+        {% if data.subtitle %}<h2>{{ data.subtitle }}</h2>{% endif %}
+    </header>
+    <div class="panels">
+        <div class="panel panel-left">
+            <div class="panel-heading">{{ data.left.heading }}</div>
+            <div class="panel-subheading">{{ data.left.subheading }}</div>
+            <div class="steps">
+                {% for step in data.left.steps %}
+                <div class="step">
+                    <div class="step-icon">{{ step.icon }}</div>
+                    <div class="step-label">{{ step.label }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="panel panel-right">
+            <div class="panel-heading" style="color:var(--text)">{{ data.right.heading }}</div>
+            <div class="panel-subheading">{{ data.right.subheading }}</div>
+            <div class="steps">
+                {% for step in data.right.steps %}
+                <div class="step">
+                    <div class="step-icon">{{ step.icon }}</div>
+                    <div class="step-label">{{ step.label }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% if data.bottom_note %}<div class="bottom-note">{{ data.bottom_note }}</div>{% endif %}
+    <footer>
+        <div class="footer-text">{{ data.footer_left }}</div>
+        <div class="footer-text">{{ data.footer_right }}</div>
+    </footer>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+models:
+  free:
+    - name: "gemini/gemini-2.0-flash"
+      provider: "google"
+      max_tokens: 8192
+      cost_per_1k_tokens: 0
+      use_for: ["topic_generation", "content_brief", "html_generation"]
+    - name: "huggingface/mistralai/Mistral-7B-Instruct-v0.3"
+      provider: "huggingface"
+      max_tokens: 4096
+      cost_per_1k_tokens: 0
+      use_for: ["topic_generation"]
+
+  mid:
+    - name: "claude-sonnet-4-20250514"
+      provider: "anthropic"
+      max_tokens: 8192
+      cost_per_1k_tokens: 0.003
+      use_for: ["content_brief", "html_generation"]
+    - name: "gpt-4o-mini"
+      provider: "openai"
+      max_tokens: 8192
+      cost_per_1k_tokens: 0.00015
+      use_for: ["content_brief", "html_generation"]
+
+  premium:
+    - name: "claude-opus-4-20250514"
+      provider: "anthropic"
+      max_tokens: 8192
+      cost_per_1k_tokens: 0.015
+      use_for: ["html_generation", "fix_output"]
+    - name: "gpt-4o"
+      provider: "openai"
+      max_tokens: 8192
+      cost_per_1k_tokens: 0.005
+      use_for: ["html_generation", "fix_output"]
+
+defaults:
+  topic_generation: "gemini/gemini-2.0-flash"
+  content_brief: "gemini/gemini-2.0-flash"
+  html_generation: "claude-sonnet-4-20250514"
+  fix_output: "claude-opus-4-20250514"

@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 80px 40px;
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    h1 {
+        font-family: var(--font-heading);
+        font-size: 3.5rem;
+        color: var(--primary);
+        padding: 0 20px;
+    }
+
+    .grid-system {
+        position: relative;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hub {
+        width: 250px;
+        height: 250px;
+        background: var(--primary);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        z-index: 10;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 8px solid white;
+    }
+
+    .hub-icon {
+        font-size: 4rem;
+        margin-bottom: 10px;
+    }
+
+    .hub-label {
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-align: center;
+        letter-spacing: 1px;
+        padding: 0 20px;
+    }
+
+    .cards-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        width: 100%;
+        height: 100%;
+        gap: 60px;
+        padding: 40px;
+    }
+
+    .card-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    .card-wrapper:nth-child(1) {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .card-wrapper:nth-child(2) {
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+
+    .card-wrapper:nth-child(3) {
+        align-items: flex-end;
+        justify-content: flex-start;
+    }
+
+    .card-wrapper:nth-child(4) {
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+
+    .grid-card {
+        background: white;
+        width: 320px;
+        padding: 35px 25px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        text-align: center;
+        position: relative;
+        z-index: 5;
+        border-top: 5px solid var(--accent);
+    }
+
+    .card-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+    }
+
+    .card-heading {
+        font-family: var(--font-heading);
+        font-size: 1.6rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    .card-desc {
+        font-size: 1.2rem;
+        color: var(--text);
+        opacity: 0.8;
+        line-height: 1.5;
+    }
+
+    /* Connecting lines (SVG) */
+    .lines-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .lines-svg line {
+        stroke: var(--secondary);
+        stroke-width: 6;
+        stroke-dasharray: 10 10;
+    }
+
+    @media (max-aspect-ratio: 1/1) {
+        .cards-container {
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .grid-card {
+            width: 100%;
+            min-height: 250px;
+            padding: 25px 20px;
+        }
+
+        .hub {
+            width: 180px;
+            height: 180px;
+        }
+
+        .hub-icon {
+            font-size: 3rem;
+            margin-bottom: 5px;
+        }
+
+        .hub-label {
+            font-size: 1rem;
+        }
+
+        .card-heading {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>{{ data.title }}</h1>
+    </header>
+
+    <div class="grid-system">
+        <svg class="lines-svg">
+            <line x1="25%" y1="25%" x2="50%" y2="50%" />
+            <line x1="75%" y1="25%" x2="50%" y2="50%" />
+            <line x1="25%" y1="75%" x2="50%" y2="50%" />
+            <line x1="75%" y1="75%" x2="50%" y2="50%" />
+        </svg>
+
+        <div class="hub">
+            <div class="hub-icon">{{ data.center.icon }}</div>
+            <div class="hub-label">{{ data.center.label }}</div>
+        </div>
+
+        <div class="cards-container">
+            {% for card in data.cards %}
+            <div class="card-wrapper">
+                <div class="grid-card">
+                    <div class="card-icon">{{ card.icon }}</div>
+                    <div class="card-heading">{{ card.heading }}</div>
+                    <div class="card-desc">{{ card.description }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 80px 60px;
+    }
+
+        {
+        % if data.background_style=="soft_gradient" %
+    }
+
+    body {
+        background: linear-gradient(135deg, var(--bg), var(--secondary));
+    }
+
+        {
+        % endif %
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    h1 {
+        font-family: var(--font-heading);
+        font-size: 4rem;
+        color: var(--primary);
+    }
+
+    .bullet-list {
+        margin-bottom: 50px;
+    }
+
+    .bullet {
+        font-size: 1.8rem;
+        background: white;
+        padding: 25px 30px;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+        display: flex;
+        align-items: center;
+    }
+
+    .bullet::before {
+        content: '•';
+        color: var(--accent);
+        font-size: 2.5rem;
+        margin-right: 20px;
+        line-height: 0;
+    }
+
+    .illustration-area {
+        flex-grow: 1;
+        min-height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        position: relative;
+    }
+
+    .circle {
+        width: 350px;
+        height: 350px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 8rem;
+        border: 15px solid var(--bg);
+        position: relative;
+        z-index: 2;
+    }
+
+    .blob {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: var(--secondary);
+        opacity: 0.6;
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        filter: blur(20px);
+        z-index: 1;
+    }
+
+    @media (max-aspect-ratio: 1/1) {
+        .bullet-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .bullet {
+            margin-bottom: 0;
+            font-size: 1.4rem;
+            padding: 20px;
+        }
+
+        .illustration-area {
+            min-height: 300px;
+        }
+
+        .circle {
+            width: 250px;
+            height: 250px;
+            font-size: 6rem;
+        }
+
+        .blob {
+            width: 300px;
+            height: 300px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1>{{ data.title }}</h1>
+    </header>
+    <div class="bullet-list">
+        {% for bullet in data.bullets %}
+        <div class="bullet">{{ bullet }}</div>
+        {% endfor %}
+    </div>
+    {% if data.illustration_placeholder %}
+    <div class="illustration-area">
+        <div class="blob"></div>
+        <div class="circle">🩺</div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

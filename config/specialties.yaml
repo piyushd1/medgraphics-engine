@@ -1,0 +1,73 @@
+specialties:
+  obstetrics_gynecology:
+    name: "Obstetrics & Gynecology"
+    short: "OB-GYN"
+    topics_hint: "pregnancy scans, prenatal care, fertility, menstrual health, PCOS, menopause"
+    icon: "🤰"
+
+  cardiology:
+    name: "Cardiology"
+    short: "Cardio"
+    topics_hint: "heart health, ECG, blood pressure, cholesterol, cardiac rehabilitation"
+    icon: "❤️"
+
+  orthopedics:
+    name: "Orthopedics"
+    short: "Ortho"
+    topics_hint: "joint health, fractures, physiotherapy, spine care, sports injuries"
+    icon: "🦴"
+
+  general_medicine:
+    name: "General Medicine"
+    short: "General"
+    topics_hint: "yearly checkups, diabetes, thyroid, vitamin deficiency, preventive health"
+    icon: "🏥"
+
+  pediatrics:
+    name: "Pediatrics"
+    short: "Peds"
+    topics_hint: "vaccination schedule, child development milestones, nutrition, common illnesses"
+    icon: "👶"
+
+  dermatology:
+    name: "Dermatology"
+    short: "Derm"
+    topics_hint: "skin care, acne, eczema, sun protection, hair loss"
+    icon: "🧴"
+
+  ophthalmology:
+    name: "Ophthalmology"
+    short: "Eye"
+    topics_hint: "eye exams, vision correction, cataracts, glaucoma, screen time"
+    icon: "👁️"
+
+  dentistry:
+    name: "Dentistry"
+    short: "Dental"
+    topics_hint: "oral hygiene, dental checkups, cavities, gum disease, braces"
+    icon: "🦷"
+
+output_formats:
+  instagram_story:
+    name: "Instagram Story"
+    width: 1080
+    height: 1920
+    aspect_ratio: "9:16"
+
+  instagram_post:
+    name: "Instagram Post"
+    width: 1080
+    height: 1080
+    aspect_ratio: "1:1"
+
+  whatsapp_forward:
+    name: "WhatsApp Forward"
+    width: 800
+    height: 1200
+    aspect_ratio: "2:3"
+
+  landscape:
+    name: "Landscape (Clinic Display)"
+    width: 1920
+    height: 1080
+    aspect_ratio: "16:9"

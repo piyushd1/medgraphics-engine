@@ -1,0 +1,277 @@
+# Instincts generated from https://github.com/piyushd1/medgraphics-engine
+# Generated: 2026-03-09T10:43:53.635Z
+# Version: 2.0
+
+---
+id: medgraphics-engine-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Commit Length
+
+## Action
+
+Keep commit messages concise (under 50 characters)
+
+## Evidence
+
+- Average commit message length: 35 chars
+- Based on 3 commits
+
+---
+id: medgraphics-engine-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: medgraphics-engine-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: medgraphics-engine-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: medgraphics-engine-snake-case-files
+trigger: "When creating a new Python file"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Snake Case Files
+
+## Action
+
+Use snake_case naming convention for the filename
+
+## Evidence
+
+- Pattern observed in existing file naming structure
+
+---
+id: medgraphics-engine-camel-case-functions
+trigger: "When defining a function in Python"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Camel Case Functions
+
+## Action
+
+Use camelCase naming convention for function names
+
+## Evidence
+
+- Detected camelCase pattern in codeStyle analysis
+
+---
+id: medgraphics-engine-pascal-case-classes
+trigger: "When defining a class in Python"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Pascal Case Classes
+
+## Action
+
+Use PascalCase naming convention for class names
+
+## Evidence
+
+- Detected PascalCase pattern in codeStyle analysis
+
+---
+id: medgraphics-engine-screaming-snake-constants
+trigger: "When defining a constant in Python"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Screaming Snake Constants
+
+## Action
+
+Use SCREAMING_SNAKE_CASE naming convention for constants
+
+## Evidence
+
+- Detected SCREAMING_SNAKE_CASE pattern in codeStyle analysis
+
+---
+id: medgraphics-engine-separate-tests
+trigger: "When creating tests for a module"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Separate Tests
+
+## Action
+
+Place tests in a separate 'tests' directory
+
+## Evidence
+
+- Tests folder exists separately from source code
+- Test location marked as 'separate'
+
+---
+id: medgraphics-engine-test-function-naming
+trigger: "When writing a test for empty input scenarios"
+confidence: 0.6
+domain: testing
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Test Function Naming
+
+## Action
+
+Create descriptive test names that specify the input condition being tested
+
+## Evidence
+
+- Commit: '🧪 Add empty input test for clean_markdown_block'
+
+---
+id: medgraphics-engine-emoji-commits
+trigger: "When committing test-related changes"
+confidence: 0.4
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Emoji Commits
+
+## Action
+
+Use 🧪 emoji prefix for test commits
+
+## Evidence
+
+- Commit: '🧪 Add empty input test for clean_markdown_block'
+
+---
+id: medgraphics-engine-descriptive-commits
+trigger: "When making a commit"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Descriptive Commits
+
+## Action
+
+Write descriptive commit messages around 35 characters that clearly explain the change
+
+## Evidence
+
+- Average commit length is 35 characters
+- Examples show descriptive patterns
+
+---
+id: medgraphics-engine-pr-workflow
+trigger: "When adding CI/CD functionality"
+confidence: 0.5
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Pr Workflow
+
+## Action
+
+Reference pull request number in commit message using (#X) format
+
+## Evidence
+
+- Commit: 'Add CI workflow for linting and testing (#1)'
+
+---
+id: medgraphics-engine-ci-linting
+trigger: "When setting up CI workflow"
+confidence: 0.7
+domain: workflow
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Ci Linting
+
+## Action
+
+Include both linting and testing in the CI pipeline
+
+## Evidence
+
+- CI workflow file exists
+- Commit mentions 'linting and testing'
+

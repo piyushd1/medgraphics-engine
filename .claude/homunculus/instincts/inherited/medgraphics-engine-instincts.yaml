@@ -1,0 +1,256 @@
+# Instincts generated from https://github.com/piyushd1/medgraphics-engine
+# Generated: 2026-03-09T10:43:29.309Z
+# Version: 2.0
+
+---
+id: medgraphics-engine-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Commit Length
+
+## Action
+
+Keep commit messages concise (under 50 characters)
+
+## Evidence
+
+- Average commit message length: 36 chars
+- Based on 3 commits
+
+---
+id: medgraphics-engine-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: medgraphics-engine-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: medgraphics-engine-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: medgraphics-engine-file-naming
+trigger: "When creating a new Python file"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine File Naming
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Pattern observed in folder structure with snake_case file naming
+
+---
+id: medgraphics-engine-class-naming
+trigger: "When defining a class"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Class Naming
+
+## Action
+
+Use PascalCase naming convention
+
+## Evidence
+
+- LLMRouter class follows PascalCase pattern
+
+---
+id: medgraphics-engine-function-naming
+trigger: "When defining a function or method"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Function Naming
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Naming conventions indicate camelCase for functions
+
+---
+id: medgraphics-engine-constant-naming
+trigger: "When defining constants"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Constant Naming
+
+## Action
+
+Use SCREAMING_SNAKE_CASE naming convention
+
+## Evidence
+
+- Code style patterns show SCREAMING_SNAKE_CASE for constants
+
+---
+id: medgraphics-engine-refactor-commits
+trigger: "When making code optimization changes"
+confidence: 0.8
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Refactor Commits
+
+## Action
+
+Prefix commit with 'refactor:' followed by specific change description
+
+## Evidence
+
+- Commit: 'refactor: optimize model config lookup in LLMRouter'
+
+---
+id: medgraphics-engine-test-separation
+trigger: "When creating test files"
+confidence: 0.6
+domain: testing
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Test Separation
+
+## Action
+
+Place tests in separate directory from source code
+
+## Evidence
+
+- Architecture shows testLocation: 'separate'
+
+---
+id: medgraphics-engine-ci-integration
+trigger: "When setting up continuous integration"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Ci Integration
+
+## Action
+
+Create GitHub Actions workflow for linting and testing
+
+## Evidence
+
+- Commit: 'Add CI workflow for linting and testing (#1)'
+- Config file: '.github/workflows/ci.yml'
+
+---
+id: medgraphics-engine-pr-commits
+trigger: "When merging pull requests"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Pr Commits
+
+## Action
+
+Reference PR number in commit message using (#N) format
+
+## Evidence
+
+- Commit: 'Add CI workflow for linting and testing (#1)'
+
+---
+id: medgraphics-engine-module-organization
+trigger: "When organizing project structure"
+confidence: 0.6
+domain: architecture
+source: repo-analysis
+source_repo: piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Module Organization
+
+## Action
+
+Use hybrid module organization with domain-specific folders
+
+## Evidence
+
+- Folders: templates, engine, prompts, pages, config, clients indicate domain-based organization
+

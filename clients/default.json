@@ -1,0 +1,11 @@
+{
+  "client_name": "Default",
+  "primary_color": "#2B6CB0",
+  "secondary_color": "#EBF4FF",
+  "accent_color": "#38A169",
+  "text_color": "#1A202C",
+  "background_color": "#F7FAFC",
+  "font_heading": "Poppins",
+  "font_body": "Inter",
+  "logo_path": null
+}

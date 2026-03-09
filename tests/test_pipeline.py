@@ -11,8 +11,14 @@ from engine.pipeline import MedGraphicsPipeline
 
 load_dotenv()
 
+import pytest
+
 def test_pipeline():
     print("Testing MedGraphicsPipeline...")
+    
+    if not os.environ.get("GEMINI_API_KEY") and not os.environ.get("OPENAI_API_KEY"):
+        pytest.skip("Skipping end-to-end pipeline test: No AI API keys configured.")
+        return
     
     # Needs to be created from the current working directory
     # Loading the default client profile

@@ -1,0 +1,51 @@
+name: MedGraphics CI
+
+on:
+  pull_request:
+    branches: [dev, main]
+  push:
+    branches: [dev]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install flake8 pytest pyyaml jinja2 python-dotenv pillow
+          pip install playwright litellm streamlit
+          playwright install chromium --with-deps
+
+      - name: Lint with flake8
+        run: |
+          flake8 . --max-line-length=120 --exclude=.venv,__pycache__ --count --show-source --statistics || true
+
+      - name: Validate configs
+        run: |
+          python -c "
+          import yaml, json, os
+          if os.path.exists('config/models.yaml'):
+              yaml.safe_load(open('config/models.yaml'))
+              print('models.yaml OK')
+          if os.path.exists('config/specialties.yaml'):
+              yaml.safe_load(open('config/specialties.yaml'))
+              print('specialties.yaml OK')
+          if os.path.exists('clients/default.json'):
+              json.load(open('clients/default.json'))
+              print('default.json OK')
+          print('All configs valid')
+          "
+
+      - name: Run tests
+        run: |
+          if [ -d "tests" ] && [ "$(ls -A tests/ 2>/dev/null)" ]; then
+            python -m pytest tests/ -v --timeout=120
+          else
+            echo "No tests yet, skipping"
+          fi

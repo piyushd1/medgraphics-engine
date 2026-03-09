@@ -1,0 +1,183 @@
+# Instincts generated from https://github.com/piyushd1/medgraphics-engine
+# Generated: 2026-03-09T08:37:27.933Z
+# Version: 2.0
+
+---
+id: medgraphics-engine-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Commit Length
+
+## Action
+
+Write moderate-length commit messages (~50 characters)
+
+## Evidence
+
+- Average commit message length: 72 chars
+- Based on 10 commits
+
+---
+id: medgraphics-engine-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: medgraphics-engine-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Export Style
+
+## Action
+
+Prefer mixed exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: mixed
+
+---
+id: medgraphics-engine-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: medgraphics-engine-workflow-feature-development
+trigger: "when implementing a new feature"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Workflow Feature Development
+
+## Action
+
+Follow the feature-development workflow:
+1. Add feature implementation
+2. Add tests for feature
+3. Update documentation
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~21x per month
+- Files: **/*.test.*, **/api/**
+
+---
+id: medgraphics-engine-workflow-add-engine-component
+trigger: "when doing add engine component"
+confidence: 0.7
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Workflow Add Engine Component
+
+## Action
+
+Follow the add-engine-component workflow:
+1. Create component file in engine/ directory
+2. Create corresponding test file with test_ prefix
+3. Implement core functionality
+4. Write comprehensive tests
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~4x per month
+- Files: engine/*.py, test_*.py
+
+---
+id: medgraphics-engine-workflow-feature-with-tests
+trigger: "when doing feature with tests"
+confidence: 0.75
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Workflow Feature With Tests
+
+## Action
+
+Follow the feature-with-tests workflow:
+1. Create/modify implementation file
+2. Create corresponding test file
+3. Write feature code
+4. Write test cases
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~5x per month
+- Files: *.py, test_*.py
+
+---
+id: medgraphics-engine-workflow-template-system-development
+trigger: "when doing template system development"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/piyushd1/medgraphics-engine
+---
+
+# Medgraphics Engine Workflow Template System Development
+
+## Action
+
+Follow the template-system-development workflow:
+1. Create/modify template engine component
+2. Add HTML templates in templates/ directory
+3. Create corresponding tests
+4. Update template system
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: engine/template_engine.py, templates/*.html, test_template*.py
+

@@ -2,7 +2,9 @@ import os
 import json
 import logging
 from engine.pipeline import MedGraphicsPipeline
+from dotenv import load_dotenv
 
+load_dotenv()
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 

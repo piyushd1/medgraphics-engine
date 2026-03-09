@@ -1,5 +1,7 @@
 import json
 import yaml
+import re
+import logging
 from pathlib import Path
 from engine.llm_router import LLMRouter
 from engine.template_engine import TemplateEngine
@@ -8,17 +10,26 @@ from prompts.topic_generation import TOPIC_GENERATION_PROMPT
 from prompts.content_brief import CONTENT_BRIEF_PROMPT, TEMPLATE_SCHEMAS
 from prompts.html_generation import HTML_GENERATION_PROMPT
 
-def safe_json_parse(text: str) -> dict:
-    """Parse JSON from LLM response, handling common issues"""
-    # Strip markdown code blocks if present
+logger = logging.getLogger(__name__)
+
+def clean_markdown_block(text: str) -> str:
+    """Strip markdown code blocks if present"""
     text = text.strip()
-    if text.startswith("```json"):
-        text = text[7:]
-    elif text.startswith("```"):
-        text = text[3:]
+    if text.startswith("```"):
+        # Find the first newline after ``` to strip language identifier like json or html
+        newline_idx = text.find("\n")
+        if newline_idx != -1 and newline_idx < 15:
+            text = text[newline_idx+1:]
+        else:
+            text = text[3:]
     if text.endswith("```"):
         text = text[:-3]
-    return json.loads(text.strip())
+    return text.strip()
+
+def safe_json_parse(text: str) -> dict:
+    """Parse JSON from LLM response, handling common issues"""
+    text = clean_markdown_block(text)
+    return json.loads(text)
 
 class MedGraphicsPipeline:
     def __init__(self, config_dir="config"):
@@ -36,9 +47,13 @@ class MedGraphicsPipeline:
         specialty = self.config["specialties"][specialty_key]
         format_config = self.config["output_formats"][output_format]
         
+        # Prevent prompt injection by heavily sanitizing keywords
+        raw_keywords = keywords or specialty.get("topics_hint", "")
+        safe_keywords = re.sub(r'[^\w\s,\.-]', '', raw_keywords)
+        
         prompt = TOPIC_GENERATION_PROMPT.format(
             specialty_name=specialty["name"],
-            keywords=keywords or specialty.get("topics_hint", ""),
+            keywords=safe_keywords,
             output_format=format_config["name"],
             width=format_config["width"],
             height=format_config["height"],
@@ -89,16 +104,8 @@ class MedGraphicsPipeline:
         # HTML generation doesn't return JSON
         response_text, model, cost = self.router.call_with_fallback("html_generation", prompt, expect_json=False)
         
-        # Cleanup markdown formatting around HTML
-        html_code = response_text.strip()
-        if html_code.startswith("```html"):
-            html_code = html_code[7:]
-        elif html_code.startswith("```"):
-            html_code = html_code[3:]
-        if html_code.endswith("```"):
-            html_code = html_code[:-3]
-            
-        return html_code.strip()
+        # Cleanup markdown formatting around HTML using shared helper
+        return clean_markdown_block(response_text)
     
     def render_image(self, html: str, output_path: str,
                      output_format: str) -> str:
@@ -114,13 +121,13 @@ class MedGraphicsPipeline:
                           output_path: str) -> dict:
         """Run complete pipeline for one topic. Returns metadata."""
         
-        print(f"[{topic['title']}] Generating structured content...")
+        logger.info(f"[{topic['title']}] Generating structured content...")
         content = self.generate_content(topic, specialty_key, output_format)
         
-        print(f"[{topic['title']}] Generating HTML code...")
+        logger.info(f"[{topic['title']}] Generating HTML code...")
         html = self.generate_html(content, topic["template_type"], client_profile, output_format)
         
-        print(f"[{topic['title']}] Rendering PNG...")
+        logger.info(f"[{topic['title']}] Rendering PNG...")
         # Start renderer if not started
         if not self.renderer.browser:
             self.renderer.start()

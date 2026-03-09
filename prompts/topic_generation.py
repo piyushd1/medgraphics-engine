@@ -21,7 +21,7 @@ Respond in JSON ONLY, no markdown, no backticks:
     {{
       "title": "Short catchy title for the graphic",
       "description": "One line description of what the graphic will show",
-      "template_type": "timeline|comparison|checklist|flowchart|info_card|icon_grid",
+      "template_type": "timeline",
       "medical_accuracy_note": "Brief note on key medical facts to include"
     }}
   ]

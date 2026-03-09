@@ -63,7 +63,8 @@ class Renderer:
 
         page = self.browser.new_page(
             viewport={"width": width, "height": height},
-            device_scale_factor=device_scale_factor
+            device_scale_factor=device_scale_factor,
+            java_script_enabled=False  # Mitigate XSS from LLM HTML
         )
         
         try:
@@ -81,6 +82,7 @@ class Renderer:
             
         except Exception as e:
             logger.error(f"Error rendering HTML: {e}")
+            raise
             
         finally:
             page.close()
@@ -95,10 +97,13 @@ class Renderer:
         height: int = 1920
     ) -> list[str]:
         """Render multiple HTMLs to PNGs. Returns list of output paths."""
+        import os
         output_paths = []
         Path(output_dir).mkdir(parents=True, exist_ok=True)
         for item in html_list:
-            path = str(Path(output_dir) / item["filename"])
+            # Prevent path traversal by extracting just the basename
+            safe_filename = os.path.basename(item["filename"])
+            path = str(Path(output_dir) / safe_filename)
             self.render_html_to_png(item["html"], path, width, height)
             output_paths.append(path)
         return output_paths

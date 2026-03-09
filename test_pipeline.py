@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from engine.pipeline import MedGraphicsPipeline
 from dotenv import load_dotenv
 
@@ -33,7 +34,8 @@ def test_pipeline():
     
     # Define an output path
     os.makedirs("output", exist_ok=True)
-    output_path = f"output/test_pipeline_{topic['template_type']}.png"
+    safe_type = re.sub(r'[^\w\.-]', '', topic['template_type'])
+    output_path = f"output/test_pipeline_{safe_type}.png"
     
     # 2-4. Run the rest of the pipeline
     try:

@@ -1,132 +1,110 @@
 import json
 import logging
 import litellm
-import yaml
-from pathlib import Path
+import os
 
 logger = logging.getLogger(__name__)
 
 class LLMRouter:
-    def __init__(self, config_path="config/models.yaml"):
-        """Load model configs from YAML and initialize cost tracking."""
-        with open(config_path, "r", encoding="utf-8") as f:
-            self.config = yaml.safe_load(f)
-        
+    def __init__(self):
+        """Initialize cost tracking."""
         self.cost_summary = {}
-        
+        self.last_model_used = None
+        self.last_cost = {"total_cost": 0.0}
+
     def _track_cost(self, model_name: str, cost: float):
         if model_name not in self.cost_summary:
             self.cost_summary[model_name] = 0.0
         self.cost_summary[model_name] += cost
+        self.last_cost["total_cost"] = cost
 
-    def _get_model_config(self, model_name: str) -> dict:
-        for tier, models in self.config.get("models", {}).items():
-            for m in models:
-                if m["name"] == model_name:
-                    return m
-        return None
-
-    def _get_models_for_task(self, task: str, tier: str) -> list:
-        """Returns all models in a specific tier that support the given task."""
-        models_in_tier = self.config.get("models", {}).get(tier, [])
-        return [m for m in models_in_tier if task in m.get("use_for", [])]
-
-    def call(self, task: str, prompt: str, tier: str = "auto") -> str:
-        """
-        Route a prompt to the appropriate model based on tier.
-        If tier='auto', uses the default model for the task.
-        """
-        model_name = None
-        max_tokens = 4096
-
-        if tier == "auto":
-            # Get default from config
-            model_name = self.config.get("defaults", {}).get(task)
-            if not model_name:
-                raise ValueError(f"No default model configured for task '{task}'")
-        else:
-            task_models = self._get_models_for_task(task, tier)
-            if not task_models:
-                raise ValueError(f"No model found in tier '{tier}' for task '{task}'")
-            model_name = task_models[0]["name"]
-
-        model_cfg = self._get_model_config(model_name)
-        if model_cfg:
-            max_tokens = model_cfg.get("max_tokens", 4096)
+    def validate_model_setup(self, model_id: str) -> bool:
+        """Run a minimal test API call to validate keys and model names."""
+        if not model_id:
+            return False
 
         try:
+            logger.info(f"Validating model setup for {model_id}...")
+            # Very small completion to minimize cost
             response = litellm.completion(
-                model=model_name,
+                model=model_id,
+                messages=[{"role": "user", "content": "Hi"}],
+                max_tokens=10
+            )
+            return True
+        except Exception as e:
+            logger.warning(f"Validation failed for {model_id}: {e}")
+            return False
+
+    def call(self, model_id: str, prompt: str, expect_json: bool = False, max_tokens: int = 4096) -> tuple[str, str, float]:
+        """
+        Route a prompt to the explicitly provided model.
+        Returns tuple of (response_text, model_id, cost).
+        """
+        if not model_id:
+            raise ValueError("model_id must be provided to LLMRouter.call")
+
+        try:
+            logger.info(f"Attempting {model_id}")
+            self.last_model_used = model_id
+            response = litellm.completion(
+                model=model_id,
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=max_tokens
             )
             text = response.choices[0].message.content
+
+            if expect_json and text:
+                try:
+                    clean_text = text.strip()
+                    if clean_text.startswith("```json"):
+                        clean_text = clean_text[7:]
+                    if clean_text.endswith("```"):
+                        clean_text = clean_text[:-3]
+                    json.loads(clean_text)
+                except json.JSONDecodeError:
+                    logger.warning(f"Invalid JSON response from {model_id}")
+
             cost = litellm.completion_cost(completion_response=response)
             if cost is None:
                 cost = 0.0
-            self._track_cost(model_name, cost)
-            return text
+            self._track_cost(model_id, cost)
+            return text, model_id, cost
+
         except litellm.exceptions.AuthenticationError as e:
-            msg = f"API Key missing or invalid for {model_name}. Please check your .env file or environment variables."
+            msg = f"API Key missing or invalid for {model_id}. Please check your configuration."
             logger.error(msg)
             raise ValueError(msg)
         except Exception as e:
-            logger.error(f"Error calling {model_name}: {e}")
+            logger.error(f"Error calling {model_id}: {e}")
             raise
 
-    def call_with_fallback(self, task: str, prompt: str, expect_json: bool = False) -> tuple[str, str, float]:
+    def image_generation(self, model_id: str, prompt: str) -> tuple[str, str, float]:
         """
-        Always starts at free tier, escalates on failure.
+        Generate an image using the specified model.
+        Returns tuple of (image_url, model_id, cost).
         """
-        tiers_to_try = ["free", "mid", "premium"]
-        
-        for tier in tiers_to_try:
-            task_models = self._get_models_for_task(task, tier)
-            for model_cfg in task_models:
-                model_name = model_cfg["name"]
-                max_tokens = model_cfg.get("max_tokens", 4096)
-                
-                try:
-                    logger.info(f"Attempting {model_name} for {task} (tier: {tier})")
-                    response = litellm.completion(
-                        model=model_name,
-                        messages=[{"role": "user", "content": prompt}],
-                        max_tokens=max_tokens
-                    )
-                    text = response.choices[0].message.content
-                    
-                    if not text or not text.strip():
-                        logger.warning(f"Empty response from {model_name}, escalating...")
-                        continue
-                        
-                    if expect_json:
-                        try:
-                            clean_text = text.strip()
-                            if clean_text.startswith("```json"):
-                                clean_text = clean_text[7:]
-                            if clean_text.endswith("```"):
-                                clean_text = clean_text[:-3]
-                            json.loads(clean_text)
-                        except json.JSONDecodeError:
-                            logger.warning(f"Invalid JSON response from {model_name}, escalating...")
-                            continue
+        if not model_id:
+            raise ValueError("model_id must be provided to LLMRouter.image_generation")
 
-                    cost = litellm.completion_cost(completion_response=response)
-                    if cost is None:
-                        cost = 0.0
-                    self._track_cost(model_name, cost)
-                    return text, model_name, cost
+        try:
+            logger.info(f"Generating image with {model_id}")
+            self.last_model_used = model_id
+            response = litellm.image_generation(
+                model=model_id,
+                prompt=prompt
+            )
+            image_url = response.data[0].url
 
-                except litellm.exceptions.AuthenticationError as e:
-                    # Missing API key shouldn't be blindly skipped if it's a hard requirement, but for fallback
-                    # we might escalate purely to try another provider the user DID configure.
-                    logger.warning(f"Authentication setup error for {model_name}: {e}, escalating...")
-                    continue
-                except Exception as e:
-                    logger.warning(f"API Error from {model_name}: {e}, escalating...")
-                    continue
-                    
-        raise RuntimeError(f"All fallback models failed for task '{task}'")
+            cost = litellm.completion_cost(completion_response=response)
+            if cost is None:
+                cost = 0.0
+            self._track_cost(model_id, cost)
+            return image_url, model_id, cost
+
+        except Exception as e:
+            logger.error(f"Error generating image with {model_id}: {e}")
+            raise
 
     def get_cost_summary(self) -> dict:
         """Return total costs per model for the session"""
